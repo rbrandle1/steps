@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const messages = ['Learn React ⚛️', 'Apply for jobs 💼', 'Invest your new income 🤑'];
 
-const App = () => {
+const Steps = () => {
 	const [step, setStep] = useState(1);
 	const [isOpen, setIsOpen] = useState(true);
 
@@ -47,5 +47,9 @@ const App = () => {
 			)}
 		</>
 	);
+};
+
+const App = () => {
+	return <Steps />;
 };
 export default App;
