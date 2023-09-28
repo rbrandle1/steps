@@ -2,23 +2,6 @@ import { useState } from 'react';
 
 const messages = ['Learn React ⚛️', 'Apply for jobs 💼', 'Invest your new income 🤑'];
 
-const Button = ({ onClick, isDisabled, children }) => {
-	return (
-		<button onClick={onClick} disabled={isDisabled}>
-			{children}
-		</button>
-	);
-};
-
-const StepsMessage = ({ step, children }) => {
-	return (
-		<p className='message'>
-			<h3>Step {step}:</h3>
-			{children}
-		</p>
-	);
-};
-
 const Steps = () => {
 	const [step, setStep] = useState(1);
 	const [isOpen, setIsOpen] = useState(true);
@@ -35,9 +18,6 @@ const Steps = () => {
 		}
 	};
 
-	const disabledPrev = step === 1;
-	const disabledNext = step === 3;
-
 	return (
 		<>
 			<button className='close' onClick={() => setIsOpen((is) => !is)}>
@@ -51,15 +31,17 @@ const Steps = () => {
 						<div className={step >= 3 ? 'active' : ''}>3</div>
 					</div>
 
-					<StepsMessage step={step}>{messages[step - 1]}</StepsMessage>
+					<p className='message'>
+						Step {step}: {messages[step - 1]}
+					</p>
 
 					<div className='buttons'>
-						<Button onClick={handlePrev} isDisabled={disabledPrev}>
-							{!disabledPrev && <span>👈</span>} Previous
-						</Button>
-						<Button onClick={handleNext} isDisabled={disabledNext}>
-							Next {!disabledNext && <span>👉</span>}
-						</Button>
+						<button onClick={handlePrev} disabled={step === 1}>
+							Previous
+						</button>
+						<button onClick={handleNext} disabled={step === 3}>
+							Next
+						</button>
 					</div>
 				</div>
 			)}
